@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "11434:11434"
+    volumes:
+      - ~/ollama-storage:/root/.ollama 
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
