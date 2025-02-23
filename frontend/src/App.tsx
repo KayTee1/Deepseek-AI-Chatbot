@@ -29,11 +29,14 @@ export default function App() {
           model: "deepseek-r1",
           prompt,
           temperature: 0.7,
+	  streaming: false
         }),
       });
 
       const data = await response.json();
       console.log(data.response);
+	console.log(data)
+	
       setMessages((prev) => [...prev, data.response]);
     } catch (error) {
       setMessages((prev) => [
