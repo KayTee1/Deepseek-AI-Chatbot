@@ -1,9 +1,0 @@
-###
-POST http://192.168.1.102:11434/api/generate
-Content-Type: application/json
-
-{
-    "model": "deepseek-r1",
-    "prompt": "Hello!",
-    "stream": false
-}
