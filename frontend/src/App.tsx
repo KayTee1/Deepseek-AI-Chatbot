@@ -30,6 +30,8 @@ export default function App() {
       });
 
       const aiMessage = { text: response.data.response, sender: "ai" };
+      console.log(response.data.response);
+      console.log(aiMessage)
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
       setMessages((prev) => [
@@ -75,7 +77,6 @@ export default function App() {
             placeholder="Type a message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && sendMessage()}
           />
           <button
             className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg"
