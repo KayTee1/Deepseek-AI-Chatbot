@@ -7,13 +7,13 @@ Revived a **decade-old PC** by installing **Ubuntu Server**, turning outdated ha
 
 ## 📌 Project Core
 
-✅ **Self-hosted AI chatbot**
-✅ **Ollama - Local AI model inference**
-✅ **DeepSeek-R1 - AI model powering the chatbot**
-✅ **Docker & Docker Compose - Containerized deployment**
-✅ **Reverse proxy setup using Nginx**
-✅ **React + TailwindCSS - Frontend for chatbot UI**
-✅ **Ubuntu Server - Lightweight OS for hosting**
+- ✅ **Self-hosted AI chatbot**
+- ✅ **Ollama - Local AI model inference**
+- ✅ **DeepSeek-R1 - AI model powering the chatbot**
+- ✅ **Docker & Docker Compose - Containerized deployment**
+- ✅ **Reverse proxy setup using Nginx**
+- ✅ **React + TailwindCSS - Frontend for chatbot UI**
+- ✅ **Ubuntu Server - Lightweight OS for hosting**
 
 ---
 
