@@ -24,14 +24,14 @@ export default function App() {
 
     try {
       const response = await axios.post(API_URL, {
-        model: "deepseek-r1",
-        prompt: input,
-        stream: false,
+        model: "deepseek-r1:latest",
+        prompt: [{ role: "user", content: input }],
+        stream: true,
       });
 
       const aiMessage = { text: response.data.response, sender: "ai" };
       console.log(response.data.response);
-      console.log(aiMessage)
+      console.log(aiMessage);
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
       setMessages((prev) => [

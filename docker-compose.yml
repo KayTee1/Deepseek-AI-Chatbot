@@ -4,9 +4,9 @@ services:
   backend:
     build: ./backend
     ports:
-      - "11435:11434"
+      - "11434:11434"
     volumes:
-      - /usr/share/ollama:/root/.ollama 
+      - ~/ollama-storage:/root/.ollama 
 
   frontend:
     build: ./frontend
