@@ -27,18 +27,36 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "deepseek-r1",
-          prompt,
+          prompt: input, // Make sure this is sending correct user input
           temperature: 0.7,
-	  streaming: false
+          stream: false, // Ensure streaming is disabled for JSON responses
         }),
       });
 
       const data = await response.json();
-      console.log(data.response);
-	console.log(data)
-	
-      setMessages((prev) => [...prev, data.response]);
+      console.log("Full API Response:", data); // Debugging log
+
+      // ✅ Check if the response is empty
+      if (!data || !data.response) {
+        console.error("Empty API response:", data);
+        setMessages((prev) => [
+          ...prev,
+          { text: "Error: Empty response from AI.", sender: "ai" },
+        ]);
+      } else {
+        // ✅ Strip <think> tags if they exist
+        const cleanedResponse = data.response.replace(/<\/?think>/g, "").trim();
+        setMessages((prev) => {
+          const newMessages = [
+            ...prev,
+            { text: cleanedResponse, sender: "ai" },
+          ];
+          console.log("Updated Messages:", newMessages); // Log state updates
+          return newMessages;
+        });
+      }
     } catch (error) {
+      console.error("Fetch error:", error);
       setMessages((prev) => [
         ...prev,
         { text: "Error: Unable to reach AI server.", sender: "ai" },
