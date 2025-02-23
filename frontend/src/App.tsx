@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "http://192.168.1.102:11434/api/generate"; // Change to your server's IP
+const API_URL = "http://192.168.1.102:11435/api/generate"; // Change to your server's IP
 
 export default function App() {
   const [messages, setMessages] = useState([
@@ -23,16 +23,16 @@ export default function App() {
     setLoading(true);
 
     try {
-      const response = await axios.post(API_URL, {
-        model: "deepseek-r1:latest",
-        prompt: [{ role: "user", content: input }],
-        stream: true,
+      const response = await fetch(API_URL, {
+        method: "POST",
+	headers: { "Content-Type: "application/json" },
+	body: JSON.stringify({ model: "deepseek-r1:1.5b", prompt, temperature: 0.7 }),
       });
 
-      const aiMessage = { text: response.data.response, sender: "ai" };
-      console.log(response.data.response);
-      console.log(aiMessage);
-      setMessages((prev) => [...prev, aiMessage]);
+      const data = await response.json()
+      console.log(data.response);
+      setMessages((prev) => [...prev, data.response]);
+
     } catch (error) {
       setMessages((prev) => [
         ...prev,

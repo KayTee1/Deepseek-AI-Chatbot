@@ -2,11 +2,24 @@ version: '3'
 
 services:
   backend:
-    build: ./backend
+    image: ollama/ollama
     ports:
-      - "11434:11434"
+      - "11435:11434"
     volumes:
-      - ~/ollama-storage:/root/.ollama 
+      - ~/.ollama:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_ORIGINS=*
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - backend
 
   frontend:
     build: ./frontend
