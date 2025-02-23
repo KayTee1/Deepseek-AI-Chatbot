@@ -26,7 +26,7 @@ export default function App() {
       const response = await axios.post(API_URL, {
         model: "deepseek-r1",
         prompt: input,
-        temperature: 0.7,
+        stream: false,
       });
 
       const aiMessage = { text: response.data.response, sender: "ai" };
