@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import axios from "axios";
 
 const API_URL = "http://192.168.1.102:11435/api/generate"; // Change to your server's IP
 
@@ -25,14 +24,17 @@ export default function App() {
     try {
       const response = await fetch(API_URL, {
         method: "POST",
-	headers: { "Content-Type: "application/json" },
-	body: JSON.stringify({ model: "deepseek-r1:1.5b", prompt, temperature: 0.7 }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "deepseek-r1",
+          prompt,
+          temperature: 0.7,
+        }),
       });
 
-      const data = await response.json()
+      const data = await response.json();
       console.log(data.response);
       setMessages((prev) => [...prev, data.response]);
-
     } catch (error) {
       setMessages((prev) => [
         ...prev,
