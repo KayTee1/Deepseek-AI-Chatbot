@@ -32,7 +32,6 @@ const Chat = () => {
 
     setInput("");
     setLoading(true);
-
     try {
       const response = await fetch(API_URL + "/api/generate", {
         method: "POST",
